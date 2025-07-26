@@ -1,3 +1,3 @@
-function getImagesByQuery(query) {
+export default function getImagesByQuery(query) {
   console.log('getImagesByQuery');
 }
