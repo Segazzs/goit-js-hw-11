@@ -1,12 +1,12 @@
-export default function createGallery(images) {
+export function createGallery(images) {
   console.log('createGallery');
 }
-export default function clearGallery() {
+export function clearGallery() {
   console.log('clearGallery');
 }
-export default function showLoader() {
+export function showLoader() {
   console.log('showLoader');
 }
-export default function hideLoader() {
+export function hideLoader() {
   console.log('hideLoader');
 }
