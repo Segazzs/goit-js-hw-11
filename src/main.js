@@ -1,8 +1,10 @@
-import getImagesByQuery from './js/pixabay-api';
-import createGallery from './js/render-functions';
-import clearGallery from './js/render-functions';
-import showLoader from './js/render-functions';
-import hideLoader from './js/render-functions';
+import { getImagesByQuery } from './js/pixabay-api.js';
+import {
+  createGallery,
+  clearGallery,
+  showLoader,
+  hideLoader,
+} from './js/render-functions.js';
 
 console.log('MAIN');
 
