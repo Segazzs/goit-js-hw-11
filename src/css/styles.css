@@ -7,9 +7,24 @@
 /* Common styles */
 @import url('./reset.css');
 @import url('./base.css');
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Sections style */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
 
-body {
-  background-color: green;
+.gallery-item {
+  max-width: 400px;
+  max-height: 200;
+  background-size: cover;
 }

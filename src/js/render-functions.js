@@ -1,12 +1,30 @@
 export function createGallery(images) {
-  console.log('createGallery');
+  let item = images
+    .map(elem => {
+      let imgUrl = elem.webformatURL;
+      let bigImg = elem.largeImageURL;
+
+      return `<li class="gallery-item"><a href="${bigImg}"><img src="${imgUrl}"></a></li>`;
+    })
+    .join('');
+
+  const ul = document.createElement('ul');
+  ul.classList.add('gallery');
+  ul.insertAdjacentHTML('beforeend', item);
+  return ul;
 }
 export function clearGallery() {
-  console.log('clearGallery');
+  const oldGallery = document.querySelector('.gallery');
+  if (oldGallery) {
+    oldGallery.remove();
+  }
 }
 export function showLoader() {
-  console.log('showLoader');
+  let loader = document.createElement('p');
+  loader.innerHTML = 'Loading images, please wait...';
+  return loader;
 }
 export function hideLoader() {
-  console.log('hideLoader');
+  let p = document.querySelector('p');
+  p.remove();
 }
