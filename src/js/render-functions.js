@@ -1,5 +1,12 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+let gallery = document.querySelector('.gallery');
+let loader = document.querySelector('.loader');
+
+let lightbox;
+
 export function createGallery(images) {
-  console.log(images);
   let item = images
     .map(elem => {
       let imgUrl = elem.webformatURL;
@@ -9,7 +16,7 @@ export function createGallery(images) {
       let comments = elem.comments;
       let downloads = elem.downloads;
 
-      return `<ul>
+      return `
       <li class="gallery-item">
       <a href="${bigImg}">
         <img src="${imgUrl}" alt="" />
@@ -33,30 +40,36 @@ export function createGallery(images) {
         </ul>
       </a>
     </li>
-      </ul>
-      
       `;
     })
     .join('');
 
-  const ul = document.createElement('ul');
-  ul.classList.add('gallery');
-  ul.insertAdjacentHTML('beforeend', item);
+  gallery.insertAdjacentHTML('afterbegin', item);
 
-  return ul;
+  if (!lightbox) {
+    lightbox = new SimpleLightbox('.gallery a', {
+      captions: true,
+      captionsData: 'alt',
+      captionDelay: 250,
+    });
+  } else {
+    lightbox.refresh();
+  }
 }
 export function clearGallery() {
-  const oldGallery = document.querySelector('.gallery');
-  if (oldGallery) {
-    oldGallery.remove();
+  if (gallery) {
+    gallery.innerHTML = '';
   }
 }
 export function showLoader() {
-  let loader = document.createElement('span');
-  loader.classList.add('loader');
-  return loader;
+  const loader = document.querySelector('.loader');
+  if (loader) {
+    loader.classList.remove('none');
+  }
 }
 export function hideLoader() {
-  let span = document.querySelector('.loader');
-  span.remove();
+  const loader = document.querySelector('.loader');
+  if (loader) {
+    loader.classList.add('none');
+  }
 }

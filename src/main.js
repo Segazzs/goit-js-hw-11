@@ -14,12 +14,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 let form = document.querySelector('.form');
 
-let lightbox;
-
 form.addEventListener('submit', eve => {
-  const loader = showLoader();
-  eve.preventDefault();
+  showLoader();
   clearGallery();
+  eve.preventDefault();
   let value = eve.target.elements['search-text'].value;
   if (!value) {
     iziToast.error({
@@ -27,28 +25,22 @@ form.addEventListener('submit', eve => {
       message: 'Write a text',
     });
   } else {
-    form.insertAdjacentElement('beforeend', loader);
     axios
       .get(getImagesByQuery(value))
       .then(response => {
-        hideLoader();
-
-        form.insertAdjacentElement(
-          'afterend',
-          createGallery(response.data.hits)
-        );
-        console.log(response.data);
-        if (!lightbox) {
-          lightbox = new SimpleLightbox('.gallery a', {
-            captions: true,
-            captionsData: 'alt',
-            captionDelay: 250,
-          });
-        } else {
-          lightbox.refresh();
+        createGallery(response.data.hits);
+        if (response.data.hits.length === 0) {
+          throw new Error('No images found');
         }
       })
-      .catch(error => {})
-      .finally(() => {});
+      .catch(error => {
+        iziToast.error({
+          message:
+            'Sorry, there are no images matching your search query. Please try again!',
+        });
+      })
+      .finally(() => {
+        hideLoader();
+      });
   }
 });
