@@ -39,9 +39,7 @@ form.addEventListener('submit', eve => {
           captionDelay: 250,
         });
 
-        lightbox.on('shown.simplelightbox', function () {
-          console.log('Зображення видно');
-        });
+        lightbox.on('shown.simplelightbox', function () {});
       })
       .catch(error => {
         console.log(error);

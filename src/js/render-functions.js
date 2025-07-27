@@ -21,10 +21,10 @@ export function clearGallery() {
 }
 export function showLoader() {
   let loader = document.createElement('p');
-  loader.innerHTML = 'Loading images, please wait...';
+  loader.classList.add('loader');
   return loader;
 }
 export function hideLoader() {
-  let p = document.querySelector('p');
+  let p = document.querySelector('.loader');
   p.remove();
 }
