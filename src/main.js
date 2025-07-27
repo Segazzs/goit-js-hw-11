@@ -14,7 +14,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 let form = document.querySelector('.form');
 
+let lightbox;
+
 form.addEventListener('submit', eve => {
+  const loader = showLoader();
   eve.preventDefault();
   clearGallery();
   let value = eve.target.elements['search-text'].value;
@@ -24,28 +27,28 @@ form.addEventListener('submit', eve => {
       message: 'Write a text',
     });
   } else {
-    const loader = showLoader();
     form.insertAdjacentElement('beforeend', loader);
     axios
       .get(getImagesByQuery(value))
       .then(response => {
+        hideLoader();
+
         form.insertAdjacentElement(
           'afterend',
           createGallery(response.data.hits)
         );
-        const lightbox = new SimpleLightbox('.gallery a', {
-          captions: true,
-          captionsData: 'alt',
-          captionDelay: 250,
-        });
-
-        lightbox.on('shown.simplelightbox', function () {});
+        console.log(response.data);
+        if (!lightbox) {
+          lightbox = new SimpleLightbox('.gallery a', {
+            captions: true,
+            captionsData: 'alt',
+            captionDelay: 250,
+          });
+        } else {
+          lightbox.refresh();
+        }
       })
-      .catch(error => {
-        console.log(error);
-      })
-      .finally(() => {
-        hideLoader();
-      });
+      .catch(error => {})
+      .finally(() => {});
   }
 });
