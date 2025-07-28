@@ -9,8 +9,6 @@ import {
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
 let form = document.querySelector('.form');
 
@@ -25,8 +23,8 @@ form.addEventListener('submit', eve => {
       message: 'Write a text',
     });
   } else {
-    axios
-      .get(getImagesByQuery(value))
+    axios;
+    getImagesByQuery(value)
       .then(response => {
         createGallery(response.data.hits);
         if (response.data.hits.length === 0) {
