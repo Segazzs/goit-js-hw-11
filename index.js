@@ -1,7 +1,7 @@
-import{a as d,S as m,i as l}from"./assets/vendor-CRsTpldL.js";(function(){const i=document.createElement("link").relList;if(i&&i.supports&&i.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const s of o.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&n(s)}).observe(document,{childList:!0,subtree:!0});function r(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerPolicy&&(o.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?o.credentials="include":e.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function n(e){if(e.ep)return;e.ep=!0;const o=r(e);fetch(e.href,o)}})();const p="51493488-12143edce1099078d847fb8bb";function g(t){const i=encodeURIComponent(t.trim()),r=`https://pixabay.com/api/?key=${p}&q=${i}&orientation=horizontal&image_type=photo&safesearch=true`;return d.get(r)}let c=document.querySelector(".gallery");document.querySelector(".loader");let a;function y(t){let i=t.map(r=>{let n=r.webformatURL,e=r.largeImageURL,o=r.likes,s=r.views,u=r.comments,f=r.downloads;return`
+import{a as d,S as m,i as l}from"./assets/vendor-CRsTpldL.js";(function(){const i=document.createElement("link").relList;if(i&&i.supports&&i.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const n of o.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&s(n)}).observe(document,{childList:!0,subtree:!0});function r(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerPolicy&&(o.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?o.credentials="include":e.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function s(e){if(e.ep)return;e.ep=!0;const o=r(e);fetch(e.href,o)}})();const p="51493488-12143edce1099078d847fb8bb";function g(t){const i=encodeURIComponent(t.trim()),r=`https://pixabay.com/api/?key=${p}&q=${i}&orientation=horizontal&image_type=photo&safesearch=true`;return d.get(r).then(s=>s.data.hits)}let c=document.querySelector(".gallery");document.querySelector(".loader");let a;function y(t){let i=t.map(r=>{let s=r.webformatURL,e=r.largeImageURL,o=r.likes,n=r.views,u=r.comments,f=r.downloads;return`
       <li class="gallery-item">
       <a href="${e}">
-        <img src="${n}" alt="" />
+        <img src="${s}" alt="" />
         <ul class="img_info">
           <li>
             <p class="info_title">Likes</p>
@@ -9,7 +9,7 @@ import{a as d,S as m,i as l}from"./assets/vendor-CRsTpldL.js";(function(){const 
           </li>
           <li>
             <p class="info_title">Views</p>
-            <p>${s}</p>
+            <p>${n}</p>
           </li>
           <li>
             <p class="info_title">Comments</p>
